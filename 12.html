@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .invalid-tooltip {
+            position: absolute;
+            top: 100%;
+            z-index: 5;
+            display: none;
+            max-width: 100%;
+             padding: 0;
+            margin-top: .1rem;
+            font-size: .875rem;
+            line-height: 1;
+            color: rgba(220,53,69,.8);
+             background-color: transparent;
+            border-radius: .2rem;
+        }
+    </style>
+</head>
+<body>
+<form class="needs-validation m-3" novalidate>
+    <div class="form-group row mb-4">
+        <label class="col-2 col-form-label py-1">合同类型:</label>
+        <div class="col-10">
+            <select name="" id="" class="form-control py-1" required>
+                <option value="">销售类型</option>
+                <option value="">合同类型</option>
+            </select>
+            <!--<input type="text" class="form-control py-1" id="inputEmail3" placeholder="请输入产品名称" required>-->
+            <div class="invalid-tooltip">产品名称不能为空</div>
+        </div>
+    </div>
+    <div class="form-group row mb-4">
+        <label class="col-2 col-form-label py-1">Email:</label>
+        <div class="col-10">
+            <input type="text" class="form-control py-1" id="inputEmail3" placeholder="请输入产品名称" required>
+            <div class="invalid-tooltip">产品名称不能为空</div>
+        </div>
+    </div>
+    <div class="form-group row mb-4">
+        <div class="col-sm-10">
+            <textarea class="form-control"  placeholder="请输入备注" required></textarea>
+            <div class="invalid-tooltip">
+                备注不能为空
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary btn-block" type="submit">Submit form</button>
+</form>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        // 'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <link rel="stylesheet" href="http://resource.gongyinju.com/resource/CDN/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://resource.gongyinju.com/resource/CDN/font/iconfont/iconfont.css">
+    <link rel="stylesheet" href="http://resource.gongyinju.com/resource/CDN/theme/201801/red.css">
+    <link rel="stylesheet" href="css/dataLoans.css">
+    <title>申请贷款</title>
+</head>
+<body>
+<header class="skin-back text-white">
+    申请贷款
+</header>
+<div class="applyLoan content-back position-relative p-2">
+    <div class="rounded position-relative bg-white p-3">
+        <form action="">
+            <div class="form-group row">
+                <label for="branchName" class="col-sm-5 col-5 col-form-label p-0 text-right">分支机构名称：</label>
+                <div class="col-sm-7 col-7 pl-0">
+                    <select class="form-control p-0 rounded-0 reset-select" id="branchName">
+                        <option>工行杭州分行</option>
+                        <option>2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-5 col-form-label p-0 text-right">网上小额贷款额度：</label>
+                <div class="col-sm-7 col-7 pl-0">
+                    999,900,000.00元
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-5 col-form-label p-0 text-right">贷款金额：</label>
+                <div class="col-sm-6 col-6 px-0">
+                    <input class="form-control p-0 rounded-0 reset-select" type="text" placeholder="输入金额">
+                    <p style="font-size: .7rem;" class="mb-2">
+                        (当前剩余可用额度：<span class="skin-color">999,895,808.78</span>元)
+                    </p>
+                </div>
+                <div class="col-sm-1 col-1 pl-0">
+                    元
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="branchName" class="col-sm-5 col-5 col-form-label p-0 text-right">贷款金额(大写)：</label>
+                <div class="col-sm-7 col-7 pl-0">
+                    贰元整
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-5 col-form-label p-0 text-right">贷款期限：</label>
+                <div class="col-sm-6 col-6 px-0">
+                    <input class="form-control p-0 rounded-0 reset-select" type="text" placeholder="输入天数">
+                    <p style="font-size: .7rem;" class="mb-2">(最长可贷款365天,贷款期限与到期还款日输入其一即可)</p>
+                </div>
+                <div class="col-sm-1 col-1 pl-0">
+                    天
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-5 col-form-label p-0 text-right">到期还款日：</label>
+                <div class="col-sm-7 col-7 pl-0">
+                    <input class="form-control p-0 rounded-0 reset-select" type="date">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="branchName" class="col-sm-5 col-5 col-form-label p-0 text-right">贷款利率：</label>
+                <div class="col-sm-7 col-7 pl-0">
+                    7.8%
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="branchName" class="col-sm-5 col-5 col-form-label p-0 text-right">还款方式：</label>
+                <div class="col-sm-7 col-7 pl-0">
+                    按月付息，到期还本
+                    <p style="font-size: .7rem;" class="mb-2">(自放款日起按日计息，按月结息， 日利率=贷款利率/365)</p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="loanAccount" class="col-sm-5 col-5 col-form-label p-0 text-right">请选择放款账号：</label>
+                <div class="col-sm-7 col-7 pl-0">
+                    <select class="form-control p-0 rounded-0 reset-select" id="loanAccount">
+                        <option>0200003303004709145</option>
+                        <option>2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="repaymentAccount" class="col-sm-5 col-5 col-form-label p-0 text-right">请选择还款账号：</label>
+                <div class="col-sm-7 col-7 pl-0">
+                    <select class="form-control p-0 rounded-0 reset-select" id="repaymentAccount">
+                        <option>0200003303004709145</option>
+                        <option>2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-5 col-form-label p-0 text-right">贷款用途：</label>
+                <div class="col-sm-7 col-7 pl-0">
+                    生产经营
+                </div>
+            </div>
+            <!--用款计划展示区-->
+            <div class="form-group row mb-0 showContent">
+                <div class="bg-light-gary text-dark px-3 py-2 col-12">用款计划</div>
+                <ul class="list-group col-12 px-0">
+                    <li class="list-group-item border-top-0 border-left-0 border-right-0 py-2">
+                        <div class="row">
+                            <div class="col text-center">公司名称</div>
+                            <div class="col text-center">金额</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item mb-0 border-left-0 border-right-0 py-2">
+                        <div class="row">
+                            <div class="col px-0 text-center">杭州小额贷款有限公司</div>
+                            <div class="col px-0 text-center skin-color">￥40000000.00</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item mb-0 border-left-0 border-right-0 py-2">
+                        <div class="row">
+                            <div class="col px-0 text-center">杭州小额贷款有限公司</div>
+                            <div class="col px-0 text-center skin-color">￥40000000.00</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="form-group row  bt-dashed">
+                <button class="btn btn-link btn-block text-dark text-center" data-toggle="modal" data-target="#selectPlan"><i class="iconfont icon-plus-circle skin-color font-weight-bold pr-3"></i>添加用款计划</button>
+            </div>
+            <div class="form-group row px-2">
+                <button type="button" class="btn btn-danger skin-back border-0 col py-1 mr-3 ">提&nbsp;&nbsp;交</button>
+                <button type="button" class="btn btn-secondary bg-light-gary text-dark border-0 col py-1">返&nbsp;&nbsp;回</button>
+            </div>
+        </form>
+    </div>
+    <!--选择用款计划弹框-->
+    <div class="modal fade" id="selectPlan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content overflow-hidden">
+                <div class="modal-header py-2 skin-back text-white">
+                    <h6 class="modal-title" id="exampleModalLongTitle">请选择用款计划</h6>
+                </div>
+                <div class="modal-body px-5 py-4">
+                    <select class="form-control form-control-sm mb-3 reset-select py-0">
+                        <option>杭州小额贷款有限公司</option>
+                        <option>杭州小额贷款有限公司</option>
+                        <option>杭州小额贷款有限公司</option>
+                    </select>
+                    <div class="input-money position-relative">
+                        <input class="form-control form-control-sm reset-select py-0" type="text" placeholder="请输入金额">
+                        <span>元</span>
+                    </div>
+                </div>
+                <div class="modal-footer p-0">
+                    <div class="container  bt-solid">
+                        <div class="row">
+                            <button type="button" class="btn reset-btn text-dark col px-0 rounded-0" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn reset-btn skin-color col px-0 rounded-0 bl-solid">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="http://resource.gongyinju.com/resource/CDN/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://resource.gongyinju.com/resource/CDN/popper.js/1.12.9/popper.min.js"></script>
+<script src="http://resource.gongyinju.com/resource/CDN/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+</body>
+</html>
