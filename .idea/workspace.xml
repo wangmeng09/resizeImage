@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e05b2835-e1f1-4c6a-9cc2-a9042e461c0c" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/personalEffectiveness/image/photo-gril.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/personalEffectiveness/image/photo-man.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/personalEffectiveness/personalE.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/personalEffectiveness/personalE.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dotNetFx40_Full_x86_x64.zip" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/dataLoans/.idea/dataLoans.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dataLoans/.idea/modules.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dataLoans/.idea/workspace.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dataLoans/applyLoan.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dataLoans/applyLoanDetail.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dataLoans/browseContract.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dataLoans/css/dataLoans.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dataLoans/images/bg-image.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/dataLoans/myLoan.html" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,8 +20,8 @@
       <file leaf-file-name="personalE.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/personalEffectiveness/personalE.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="80" column="40" lean-forward="true" selection-start-line="80" selection-start-column="40" selection-end-line="80" selection-end-column="40" />
+            <state relative-caret-position="34">
+              <caret line="80" column="40" lean-forward="false" selection-start-line="80" selection-start-column="40" selection-end-line="80" selection-end-column="40" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -173,12 +161,20 @@
       <workItem from="1521786060414" duration="2469000" />
       <workItem from="1522029633718" duration="8640000" />
       <workItem from="1522653148081" duration="7800000" />
-      <workItem from="1522715852318" duration="3837000" />
+      <workItem from="1522715852318" duration="4472000" />
     </task>
+    <task id="LOCAL-00001" summary="personal">
+      <created>1522719721083</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1522719721083</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26589000" />
+    <option name="totallyTimeSpent" value="27224000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
@@ -190,7 +186,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -207,6 +203,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="personal" />
+    <option name="LAST_COMMIT_MESSAGE" value="personal" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -311,8 +311,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/personalEffectiveness/personalE.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="80" column="40" lean-forward="true" selection-start-line="80" selection-start-column="40" selection-end-line="80" selection-end-column="40" />
+        <state relative-caret-position="34">
+          <caret line="80" column="40" lean-forward="false" selection-start-line="80" selection-start-column="40" selection-end-line="80" selection-end-column="40" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
