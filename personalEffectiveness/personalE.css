@@ -50,3 +50,46 @@ body{
     height: 45px;
     margin: 1px;
 }
+
+/*new*/
+ul,li{list-style: none;}
+.bg-green{
+    background-color: #0fc2b9;
+}
+.bg-blue{
+    background-color: #3598dc;
+}
+.common-two{
+    line-height: 78px;
+    font-size: 24px;
+}
+.teamGrade-left ul>li{
+    width: 32.3%;
+    height: 125px;
+    font-size: 20px;
+    background-color: #e0ebf9;
+    float: left;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.teamGrade-left ul>li:nth-child(3n){
+    margin-right: 0;
+}
+.table thead th {
+    border-bottom: 2px solid #3598dc;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,0);
+}
+.table-striped thead tr:nth-of-type(1){
+    background-color: rgba(0,0,0,.05);
+}
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: rgba(0,0,0,.05);
+}
+.col-5 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 41.666667%;
+    flex: 0 0 40.88888%;
+    max-width: 40.88888%;
+}
