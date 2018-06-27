@@ -1,0 +1,58 @@
+/**
+ *
+ * DeliveryService
+ *  提货单与后台数据接口
+ *  getDeliveryStatusArray : 获取提货单状态
+ *  getDeliveryList : 获取提货单列表
+ *  getDeliveryDetail :  获取提货单详情
+ */
+
+
+angular.module("myApp").service("DeliveryService",["$es",function($es){
+
+	
+    this.getDeliveryStatusArray = function(){
+    	var modules = $es.getConfig("modules");
+    	var delivery = modules.delivery || {};
+    	if(delivery.status){
+    		if(delivery.status.length>1)
+    			return [ {id:undefined,name:'全  部'}].concat(delivery.status);
+    		else
+    			return delivery.status;
+    	}else{
+            return [
+                    {id:undefined,name:'全  部'},
+                    {id:"0", name:'未确认'},
+                    {id:"1",name:'已确认'}
+                ];
+    	}
+    };
+    
+    
+    this.getDeliveryList = function(filter,page,searchVal,companyId,customId){
+    	var param = {};
+    	var limit = 5;
+    	
+    	param.page = page;
+    	param.start = page*limit;
+    	param.limit = limit;
+        for(var key in filter){
+                param[key] = filter[key];
+        }
+    	param.deliveryid = searchVal;
+    	param.companyId = companyId;
+    	param.customerId = customId;
+    	var promise = $es.ajax("deliveryBean.getDeliveryList",param);
+    	return promise;
+    };
+
+    this.getDeliveryDetail = function(deliveryId){
+
+    	var param = {
+    		id:deliveryId
+    	}
+    	var promise = $es.ajax("deliveryBean.getDeliveryDetail",param);
+    	return promise;
+    }
+
+}]);

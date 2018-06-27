@@ -1,0 +1,161 @@
+angular.module("myApp")
+
+// function panel component
+.directive("functionPanel",["$permissions","$state",function($permissions,$state){
+	return {
+		restrict:'E',
+		replace:true,
+		templateUrl:"components/functionPanel.html?v="+version||"",
+		link:function(scope,element,attrs){
+			var color = {
+		    		0:"color-credit",
+		    		1:"color-more",
+		    		2:"color-finance",
+		    		3:"color-invoice"
+		    }
+		    var functionList = $permissions.getFunctionList();
+		    var entrance = {
+			        products : 'products.productList',
+			        myorder:'myorder.orderList', //代客下单
+			        cart: 'cart.cart',
+			        payment:'payment.paymentList',
+			        uppayment:'uppayment.paymentList',
+			        delivery :'delivery.deliveryList',
+			        check : 'check.checkList',
+			        noticeBoardManage:'noticeBoardManage.list',
+			        easyPay: 'easyPay.easyPayDetail',
+			        mstatement:'mstatement.mstatement',
+			        syncMessage:'syncMessage.sync',
+			        userManage:'userManage.userInfoManage',
+			        customerRelation:'customerRelation.userList',
+			        receipt:'receipt.receiptList',
+			        claimlist:'claimlist.claimlist',
+			        relatedOrder:'relatedOrder.relatedOrderList'
+			};
+		    functionList.forEach(function(item){
+				if(entrance.hasOwnProperty(item.menuUrl)){
+					item.state = entrance[item.menuUrl];
+				}
+				if(!item.menuIcon)
+		    		item.menuIcon = "icon-chanpin "+color[parseInt(Math.random()*4)];
+			})
+		    scope.modules = functionList;
+		    scope.toModule = function (name,state,url,type) {
+		    	if(type == "1")
+		    		$state.go(state);
+		    	else
+		    		$state.go("module.other",{title:name,dataUrl:url,type:type});
+		    };
+		}
+	}
+}])
+
+
+
+
+// statistc panel component
+.directive("statisticPanel",["statisticService",function(statisticService){
+	return {
+		restrict:'E',
+		replace:true,
+		transclude:true,
+		templateUrl:"components/statisticPanel.html?v="+version||"",
+		link:function(scope,element,attrs){
+			scope.statistics = statisticService.getStatistics();
+		}
+	}
+}])
+.service("statisticService",['$es','$number',function($es,$number){
+    this.getStatistics = function () {
+        var  result = {
+        	orderToday:{
+        		count:0,
+        		totalAmount:0,
+        		unit:"元"
+        	},
+        	orderMonth:{
+        		count:0,
+        		totalAmount:0,
+        		unit:"元"
+        	},
+        	payMonth:{
+        		count:0,
+        		totalAmount:0
+        	}
+        }
+        
+        function getAsync1(){
+            var param = {
+            		top:0,
+            		type:1
+            };
+            var promise = $es.ajax('reportBean.getOrderMobileInfo',param);
+            return promise;
+        }
+        
+        function getAsync2(result1){
+        	 var param2 = {
+             		top:1,
+             		type:1
+             };
+             var promise2 = $es.ajax('reportBean.getOrderMobileInfo',param2);
+             return promise2;
+        }
+        
+//        function getAsync3(){
+//        	 var param3 = {
+//             		top:1,
+//             		type:2
+//             };
+//             var promise3 = $es.ajax('reportBean.getOrderMobileInfo',param3);
+//             return promise3;
+//        }
+        
+        var p1 = getAsync1();
+        p1.then(function(today){
+        		if(today){
+	            	today = today.queryList[0];
+	                if(!today.count)
+	                	today.count = 0;
+	                if(!today.totalAmount)
+	                	today.totalAmount = 0;
+	                if(Number(today.totalAmount)>100000){
+	                	today.totalAmount = $number.divide(today.totalAmount,10000);
+	                	console.log(today.totalAmount)
+	                	today.unit = "万元";
+	                }else{
+	                	today.unit = "元";
+	                }
+					//处理总价 type-2
+	                today.totalAmount = Number(today.totalAmount).moneyFormat(typeArray[2]);
+	                result.orderToday = today;
+        		}
+              })
+         var p2 =  getAsync2();
+         p2.then(function(orderMonth){
+        	 if(orderMonth){
+        		 orderMonth = orderMonth.queryList[0];
+                 if(!orderMonth.count)
+                 	orderMonth.count = 0;
+                 if(!orderMonth.totalAmount)
+                 	orderMonth.totalAmount = 0;
+	                if(Number(orderMonth.totalAmount)>100000){
+	                	orderMonth.totalAmount = $number.divide(orderMonth.totalAmount,10000);
+                	orderMonth.unit = "万元"
+                }else{
+                	orderMonth.unit = "元"
+                }
+	             //处理总价 type-2
+	             orderMonth.totalAmount =  Number(orderMonth.totalAmount).moneyFormat(typeArray[2]);
+                 result.orderMonth = orderMonth;
+        	 }
+         });
+		
+        return result;
+        
+        
+    }
+}])
+
+
+

@@ -1,0 +1,55 @@
+var Doodle = {};
+var dateString = function () {
+	var now =  new Date().getTime(),dateString,obj={},showFestival,str;
+	switch(true){
+		case now >= new Date('2018/01/17 16:26:00').getTime() && now <= new Date('2018/03/10 00:00:00').getTime():
+			dateString = 'springFestival';
+			document.getElementById("cssfile").setAttribute("href","styles/themes/red.css");
+			break;
+		case now >= new Date('2018/04/23 00:00:00').getTime() && now <= new Date('2018/05/06 00:00:00').getTime():
+			dateString = '51';
+			break;
+		case now >= new Date('2018/09/25 00:00:00').getTime() && now <= new Date('2018/10/14 00:00:00').getTime():
+			dateString = '101';
+			break;
+	}
+	dateString ? showFestival = true : showFestival = false;
+	obj.dateString = dateString;
+	obj.showFestival = showFestival;
+	str = 'http://resource.gongyinju.com/resource/doodle/mobile/variable/imgs/festival.png';
+	obj.festivalImg = str.replace(eval(/variable/g),dateString);
+	return obj;
+};
+var slides = function () {
+	if(Doodle.dateString().showFestival){
+		dateString = Doodle.dateString().dateString;
+		var slidesArr = [
+			'http://resource.gongyinju.com/resource/doodle/mobile/variable/imgs/banner1.jpg',
+			'http://resource.gongyinju.com/resource/doodle/mobile/variable/imgs/banner1.jpg',
+			'http://resource.gongyinju.com/resource/doodle/mobile/variable/imgs/banner1.jpg'
+		],new_slidesArr;
+		new_slidesArr = slidesArr.map(function(item){
+			return item.replace(eval(/variable/g),dateString);
+		});
+		return new_slidesArr;
+	}
+};
+var bottomBar = function () {
+	var head = document.getElementsByTagName('head')[0],
+		link = document.createElement('link');
+	link.rel = "stylesheet"
+	link.href = 'http://resource.gongyinju.com/resource/CDN/font/iconfont/iconfont.css';
+	link.type = 'text/css';
+	head.appendChild(link);
+	var iconArr = {
+		iconArr4 : ['icon-xinchuntubiao','icon-xinchuntubiao6','icon-xinchuntubiao2','icon-xinchuntubiao3'],
+		iconArr3 : ['icon-xinchuntubiao1','icon-xinchuntubiao4','icon-xinchuntubiao5'],
+		iconArr2 : ['icon-xinchuntubiao4','icon-xinchuntubiao5'],
+	};
+
+	return iconArr;
+};
+
+Doodle.dateString = dateString;
+Doodle.slides = slides;
+Doodle.bottomBar = bottomBar;

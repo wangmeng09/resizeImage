@@ -1,0 +1,6 @@
+angular.module('myApp').service('relatedOrderService',['$q','$es','$rootScope','$istore','$modal',function($q,$es,$rootScope,$istore,$modal){
+     
+	
+
+}]);
+

@@ -1,0 +1,121 @@
+/**
+ * Created by chent on 2017/1/18.
+ *
+ *  CheckService
+ *  订单服务，处理订单相关的数据接口
+ *  getVoucherStatusArray：获取单据类型
+ *  getApproveStatusArray : 获取审核状态
+ *  getApproveList : 获取审核列表(分页)
+ *  getApproveDetail :  获取审核详情
+ *
+ *
+ */
+angular.module("myApp").service("CheckService",['$es',function($es){
+	
+        this.getVoucherStatusArray = function(){
+        	var modules = $es.getConfig("modules");
+        	var check = modules.check || {};
+        	if(check.status){
+        		return check.status;
+        	}
+        	else
+        		return [
+        		    {id:"0",name:'审批中'},
+                	{id:"1", name:'已审批'},
+                	{id:"2",name:'已作废'}               
+                ];
+        };
+        //任务名称
+        this.getFlowName = function(){
+        	 return $es.ajax('workflowBean.getFlowName');
+        };
+        
+       this.getApproveList = function(status,page,filter,companyId,searchVal){
+    	   
+    	    var limit=5;
+	       	var param=　{}; 
+	       	var id = "workflowBean.findApprovingList";
+	       	if(status === "1"){
+	       		id = "workflowBean.findApprovedList";
+	       		param.flowStatus = "1";
+	       	}else if(status === "2"){
+	       		id = "workflowBean.findApprovedList";
+	       		param.flowStatus = "2";
+	       	}
+            param.start = page*limit;
+       	    param.limit = limit;
+        	param.companyId = companyId;
+        	param.searchVal = searchVal;
+			for(var key in filter){
+					param[key] = filter[key];
+			}
+            return $es.ajax(id,param);
+        };
+
+       this.getApproveDetail = function(taskId){
+       		var param=　{};
+		    param.taskId = taskId;
+            return $es.ajax('workflowBean.findApproveInfo',param);
+
+	   };
+
+       this.doApprove = function(taskId,data,approveNote,action,flowType,payment){
+    	    var params = {};
+    	    if(flowType == 'payment'){
+    	    	//处理金额
+        	    payment.payAmt.toString().indexOf(',') != -1 ? payment.payAmt = payment.payAmt.replace(/,/g, '') : payment.payAmt;
+        	    data = JSON.parse(data);
+        	    //处理金额
+        	    data.payAmt.toString().indexOf(',') != -1 ? data.payAmt = data.payAmt.replace(/,/g, '') : data.payAmt;
+        	    data = JSON.stringify(data);
+            	params.paymentNo = payment.paymentNo;
+        	}
+        	var param = {
+        		taskId:taskId,
+        		data:data,
+        		approveNote:approveNote,
+           		flowType:flowType,
+           		'0':params
+        	};
+        	var id;
+        	if(action === "s"){
+        		id = "workflowBean.submitApprove";
+        	}else if(action === "b"){
+        		id = "workflowBean.backwardApprove";
+        	}else if(action === "c"){
+        		id = "workflowBean.cancelApprove";
+        	}
+            return  $es.ajax(id,param);
+	   };
+	
+       this.findApproveFlow = function(instanceId){
+       		var param=　{};
+	       	param.instanceId = instanceId;
+            return $es.ajax('workflowBean.findApproved',param);
+	   };
+
+       this.getDefPage = function(taskId){
+        	var param = {};
+        	param.taskId = taskId;
+            return $es.ajax("workflowBean.findStepConfigOfTaskId",param);
+
+	   };
+
+       this.uploadFile = function(file,data){
+        	data.invokeBean = "workflowBean";
+        	data.invokeMethod = "uploadFile";
+            return $es.uploadFileToUrl(file,data);
+	   };
+
+       this.getFileList = function(instancedId){
+			return $es.ajax("workflowBean.findAnnexFileList",{instanceId:instancedId});
+	   };
+
+       this.deleteFile = function( instancedId,taskId,fileUrl){
+			var param = {};
+			param.instanceId = instancedId;
+			param.taskId = taskId;
+			param.annexUrl = fileUrl;
+            return $es.ajax("workflowBean.deleteFile",param);
+	   }
+    }]);

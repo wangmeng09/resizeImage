@@ -1,0 +1,50 @@
+/**
+ * Created by chent on 2017/1/18
+ *
+ *  announcementService
+ *  处理产品相关的数据接口
+ *  getNoticeList : 查询公告栏列表/详情
+ */
+
+angular.module('myApp').service('announcementService',['$es','$istore','$modal',function($es,$istore,$modal){
+	// 查询公告栏列表/详情
+	this.getNoticeList = function(noticeId){
+        var limit = 20;
+        var start =0;
+        //param
+        var param = {
+            start:start,
+            limit:limit
+        };
+        
+       if(typeof noticeId == "string"){
+    		param.noticeId =noticeId;
+    	}
+        //get data
+        var promise = $es.ajax("noticeBoardBean.getNoticeBoardListOrDetail",param);
+        return promise;
+    };
+
+    
+    this.addNotice = function(notice){
+    	var promise = $es.ajax("noticeBoardBean.addNoticeBoard",notice);
+        return promise;
+    }
+    
+    this.deleteAnnounce = function(noticeId){
+    	var param={
+				"noticeId":noticeId,		
+		};
+    	return $es.ajax('noticeBoardBean.deleteNoticeBoard', param);
+    }
+    
+    this.updateAnnounce = function(notice,customerId){
+    	var params = {};
+    	params.noticeId=notice.noticeId;
+    	params.title=notice.title;
+    	params.content=notice.content;
+    	params.customerId=customerId;
+    	return $es.ajax('noticeBoardBean.updateNoticeBoard', params);
+    }
+
+}]);

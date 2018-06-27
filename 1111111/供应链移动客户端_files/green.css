@@ -1,0 +1,40 @@
+.skin-back{
+	background: #00896c !important
+}
+
+.skin-border{
+	border-color: #00896c
+}
+
+.skin-color{
+	color: #00896c !important
+}
+
+.skin-back-ligther{
+	background-color: #c4f3e9 !important;
+}
+
+.skin-border-ligther {
+	border-color: #00b28c
+}
+
+.skin-color-ligther {
+	color: #d8fff2
+}
+
+.skin-back-dark {
+	background: #127862
+}
+
+.skin-back-deep {
+	background: #005644
+}
+.skin-wave:before,.skin-wave:after{
+	background: #00896c;
+}
+
+.skin-select option:hover,.skin-select:focus option:checked {
+	background-color: #c4f3e9;
+	color: #00896c !important;
+}
+

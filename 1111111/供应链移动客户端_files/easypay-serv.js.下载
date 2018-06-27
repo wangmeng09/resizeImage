@@ -1,0 +1,39 @@
+ angular.module("myApp").service("EasyPayService",['$es',function($es){
+
+	 var paymentService = $es.getConfig("paymentservice");
+	 
+	 
+	 
+	 
+	//从后台获取相应的配置信息	
+//		var param={
+//			"payment_key":undefined	
+//		}
+//		var result = $es.ajax('paymentBean.getConfigValue',param,paymentService);
+	
+	 
+	 this.createPaymentOrder = function(currentCompany,payinfo){
+		 
+		 
+		 
+		 
+	    var params = {
+		 		"sellerID":currentCompany.companyId,
+		 		"paymentAmount":payinfo.amount,
+		 		"orderAmount":0,
+				"isFinancing":false,
+				"notes":payinfo.notes,
+				"orderIdList":"",
+	    		"hasOrder":false,
+	    		"createNewPaymentMode":"2",
+	    		"payMode":"2",
+	    		"relateOrderMode":"0",
+	    		"isNeedDebt":"0"
+	     };
+		 return $es.ajax("paymentBean.createNewPayment", params,paymentService)
+	 }
+	 
+	 
+	 
+	 
+}]);

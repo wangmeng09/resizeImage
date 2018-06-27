@@ -1,0 +1,91 @@
+/**
+ * Created by chent on 2017/1/18
+ *
+ *  ProductService
+ *  处理产品相关的数据接口
+ *  getProductList : 获取产品列表(分页)
+ *  getProductDetail : 获取产品详情
+ *  getCategory : 获取产品分类树信息
+ *  getCategoryInfo:获取产品分类信息
+ *  queryDataFav : 查询收藏产品信息
+ *	addOneProductToFav : 添加产品到收藏
+ *	remOneProductToFav : 删除该收藏产品
+ * 	addProductToCart : 添加产品到购物车
+ */
+
+angular.module("myApp").service("ProductService",['$es',function($es){
+
+    this.getProductList = function(filter,page,searchVal,companyId,categoryId){
+        var limit = 5;
+        //page
+        page = page || 0;
+        //param
+        var param = {};
+        param.page = page;
+    	param.start = page*limit;
+    	param.limit = limit;
+    	param.searchKey = searchVal
+    	param.companyId = companyId;
+    	param.categoryId = categoryId;
+    	param.onSale = 1;
+        for(var key in filter){
+			param[key] = filter[key];
+        }
+        //get data
+        var promise = $es.ajax("productInfoBean.getPorductInfo",param);
+        return promise;
+    };
+    
+   
+
+    this.getProductDetail = function(productId){
+        var param = {
+        	productId:productId
+        };
+        var promise =  $es.ajax("productInfoBean.getProductById",param);
+        return promise
+    }
+    
+    
+    this.getCategoryInfo = function(){
+    	var param = {};
+    	var result =  $es.ajax("productCategoryBean.getCategoryTree",param);
+    	return result;
+    	
+    }
+    
+    this.addProductToCart=function(companyId,productId,count,mobileFlag){
+    	var param={
+    		companyId:companyId,
+    		productId:productId,
+    		count:count,
+    		mobileFlag:mobileFlag
+           }
+    	var result = $es.ajax("cartBean.doCreate",param);
+    	return result;
+    }
+    
+	this.getCartList=function(companyId){
+		var start =0;
+		var param = {
+				start:0,
+	            limit:1000,
+				companyId:companyId,
+				};
+
+        var result = $es.ajax("cartBean.getCartInfo",param);
+        return result;
+	}
+ 
+	
+    this.getHotProducts = function(){
+    	 var limit = 8;
+    	var param={
+    			limit: limit
+            }
+    	var promise = $es.ajax("reportBean.getProductSaleRank",param);
+    	return promise;
+    }
+    
+
+}]);

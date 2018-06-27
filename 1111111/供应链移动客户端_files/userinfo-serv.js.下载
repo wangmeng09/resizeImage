@@ -1,0 +1,265 @@
+/**
+ * Created by chent on 2017/3/2.
+ *
+ *   用户信息的service 用来执行用户信息的读写
+ *
+ *   属性包括：
+ *	 userLogout:退出登录
+ *   setLoginSession: 设置session
+ *   getUserInfo:获取用户信息
+ *   getCompanyList:获取用户所属分公司
+ *   setCurrentCompany : 设置当前分公司
+ *   getCurrentCompany : 获取当前分公司
+ *   getUserAddress: 获取用户地址
+ *   getDefaultAddress: 获取默认地址
+ *   updateUserAddress:更新用户地址信息
+ *   deleteUserAddress:删除用户地址信息
+ *   addUserAddress:增加用户地址信息
+ *   setDefaultAddress: 设置地址为默认地址
+ *   changePassword : 用户修改密码接口
+ *
+ */
+angular.module('myApp').service('UserInfoService',['$q','$es','$rootScope','$istore','$modal',function($q,$es,$rootScope,$istore,$modal){
+     
+    var userManage = $es.getConfig('userservice');
+    var app = $es.getConfig('custid');
+    
+    var userinfo = null;
+    var expire = null;
+    
+
+	var getPublicKey = function(appid){
+        var param = {};
+        if(appid)
+            param.appid = appid;
+        else
+            param.appid = $es.getConfig('custid');
+        return $es.ajax('userAuthenBean.getPublicKey',param,userManage,1000);
+    };
+	
+    /**
+     * 退出登录
+     */
+    this.userLogout = function(){
+        var result  = $es.ajax("userInfoBean.logout");
+        if(result){
+        	userinfo = null;
+        }else{
+        	$modal.alert("系统错误，请联系管理员！") ;
+        }
+        return result;
+    }
+    
+    /**
+     * 修改密码
+     * @param oldPassword
+     * @param newPassword
+     * @param repeatPassword
+     * @param loginName   非必须
+     * @param appid        非必须
+     * @returns {*}
+     */
+    this.changePassword = function(oldPassword,newPassword,repeatPassword,loginName,appid){
+        
+    	var deffered = $q.defer();
+        var promise = deffered.promise;
+        
+        // public key
+        getPublicKey().then(function(key){
+        	if(key.retCode == "200"){
+	           	 var rsakey = new RSAKey();
+	             rsakey.setPublic(key.modulus,key.exponent);
+	             var oldPwd = rsakey.encrypt(oldPassword);
+	             var newPwd = rsakey.encrypt(newPassword);
+	             var repeatPwd = rsakey.encrypt(repeatPassword);
+	             var param = {
+	                     oldPassword:oldPwd,
+	                     newPassword:newPwd,
+	                     repeatPassword:repeatPwd
+	                 };
+	                 if(loginName)
+	                     param.loginName = loginName;
+	                 if(appid)
+	                 	param.appid = appid;
+	                 else
+	                     param.appid = app
+	             $es.ajax("userAuthenBean.changePassword",param,userManage).then(function(data2){
+	            	 deffered.resolve(data2);
+	             })
+        	}else{
+        		deffered.resolve(key)
+        	}
+        })
+        return promise;
+    };
+    /**
+     * 获取验证码
+     * @param phoneNumber
+     * @param loginName  非必须
+     * @param appid  非必须
+     * @returns {*}
+     */
+    this.getValidateCode = function(phoneNumber,loginName){
+        var param = {
+            mobile:phoneNumber,
+            appid:app
+        };
+        //登录名 非必须
+        if(loginName)
+            param.loginName = loginName;
+        var promise = $es.ajax('userAuthenBean.sendValidateCodeNew',param,userManage);
+        return promise;
+    };
+    /**
+     * 绑定手机号
+     * @param mobile   手机号
+     * @param code      验证码
+     * @param appid     非必须
+     */
+    this.bindPhone = function(mobile,code){
+        var param = {
+            mobile:mobile,
+            code:code,
+            appid:app
+        };
+        return $es.ajax('userAuthenBean.bindMobile',param,userManage);
+    };
+    
+    /**
+     * 获取已登录用户的用户信息
+     */
+    this.getUserInfo = function(flag){
+    	var now = new Date();
+    	if(!userinfo || now > expire || flag){
+    		var info = $es.java("userInfoBean.getUserData");
+    		if(info && info.user){
+    			expire = new Date(now.getTime()+300000);
+    			userinfo = info.user;
+    		}else{
+    			userinfo = null;
+    			$modal.alert("获取用户信息失败！");
+    		}
+    	}
+    	return userinfo;
+    };
+    
+    
+    this.getOper = function(){
+    	var promise=$es.ajax("userInfoBean.getOperatorData");
+    	promise.then(function(oper){
+    		$rootScope.oper = oper;
+    	})
+    }
+    this.getDealerList = function(page,searchKey){
+    	var limit=8;
+    	var param = {}
+    	param.page = page;
+    	param.limit = limit;
+    	param.start = page*limit;
+    	param.searchKey = searchKey;
+    	var promise=$es.ajax("dealerInfoBean.getDealerList",param);
+    	return promise;
+    };
+    
+    this.setDealer = function(dealer){
+    	var param = {};
+    	param.userId=dealer.userId;
+    	var promise=$es.ajax("dealerInfoBean.setCurrentOper",param);
+    	return promise;
+    };
+    
+    /**
+     * 获取分公司列表
+     * 获取已登录用户的分公司列表
+     */
+    this.getCompanyList = function(flag){
+    	var deffered = $q.defer();
+        var promise = deffered.promise;
+        var param = {};
+        var cpromise = $es.ajax("companyInfoBean.getBranchCompanyInfo",param);
+        cpromise.then(function(branches){
+           if(branches && branches.branchCompany){
+            	deffered.resolve(branches.branchCompany)
+           }else{
+            	deffered.resolve([]);
+           }
+        })
+    	return promise;
+    };
+    
+    /**
+     * 获取各个经销商下的分公司列表
+     */
+    this.getDealerCompanyList = function(customerId){
+        var param = {
+        		customerId:customerId
+        };
+    	var promise = $es.ajax("companyInfoBean.getCompanyInfoByCustId",param);
+    	return promise;
+    };
+    
+    /**
+     * 缓存当前分公司
+     * @param {} 分公司对象
+     */
+    this.setCurrentCompany = function(company){
+        $istore.set(config.custid+'_currentCompany',company);
+    };
+
+    /**
+     * 获取当前选中分公司的缓存
+     * @return {*}
+     */
+    this.getCurrentCompany = function(){
+        return $istore.get(config.custid+'_currentCompany');
+    };
+
+    /**
+     * 获取当前登录用户的地址列表
+     */
+    this.getUserAddress = function(userId){
+    	var param = {
+    			userId:userId
+    	}
+        var promise = $es.ajax("addressBean.getAddressInfo",param);
+        return promise;
+    
+    };
+
+    /**
+     * 修改用户的地址信息
+     * @param {*} 地址信息
+     */
+    this.updateUserAddress = function(param){
+        var promise = $es.ajax("addressBean.editAddressInfo",param);
+        return promise;
+    };
+
+    /**
+     * 删除某个地址
+     * @param string 地址编号
+     */
+    this.deleteUserAddress = function(addrId){
+        var promise = $es.ajax("addressBean.deleteAddress",{addrId:addrId});
+        return promise;
+    };
+    
+    /**
+     * 新增地址
+     */
+    this.addUserAddress = function(param){
+        var promise = $es.ajax("addressBean.editAddressInfo",param);
+        return promise;
+    };
+
+    /**
+     * 设置某个地址为默认收货地址
+     * @param string 地址id
+     */
+    this.setDefaultAddress = function(addrId,userId){
+        var result = $es.ajax("addressBean.setDefaultAddr",{addrId:addrId,userId:userId});
+        return result;
+    }
+
+}]);
+

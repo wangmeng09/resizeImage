@@ -1,0 +1,40 @@
+/**
+ * Created by chent on 2017/1/18
+ *
+ *  ProductService
+ *  处理产品相关的数据接口
+ *  getstatementStatusArray
+ */
+angular.module('myApp').service('mstatementService',['$es','$istore','$modal',function($es,$istore,$modal){
+	function getTime(number){
+    	var now = new Date();
+    	var date = new Date(now.getTime()-number*24*3600*1000);
+    	var year = date.getFullYear()
+    	var month = date.getMonth()+1;
+    	if(month > 12) month = 1;
+    	var day = date.getDate();
+    	if(month < 10)
+    		month = "0"+month;
+    	if(day < 10)
+    		day = "0"+day;
+    	return year +'-'+month+'-'+day	   
+    }
+    
+    this.getstatementStatusArray = function(){
+    	var modules = $es.getConfig("modules");
+    	var myorder = modules.myorder || {};
+    	if(myorder.status){
+    		if(myorder.status.length>1)
+    			return [ {id:undefined,name:'全  部'}].concat(myorder.status);
+    		else
+    			return myorder.status;
+    	}else{
+            return [
+                    {id:undefined,name:'全  部'},
+                    {id:"0", name:'欠款'},
+                    {id:"1",name:'付款'}
+                ];	
+    	}
+    };
+
+}]);

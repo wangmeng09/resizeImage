@@ -1,0 +1,97 @@
+/**
+ * Created by chent on 2017/1/18.
+ *
+ *  CartService
+ *  处理购物车的逻辑
+ *  getCartList  : 获取购物车列表
+ *  addProduct :  加入产品到购物车
+ *  editProduct : 修改购物车产品数量
+ *  deleteProduct: 从购物车删除产品
+ *  submitCart : 提交购物车为订单
+ *
+ */
+angular.module("myApp").service("CartService",['$es',function($es){
+	
+		/**
+		 * 获取购物车列表
+		 * @param companyId 分公司编号
+		 * @returns [] 购物车列表
+		 */
+		this.getCartList=function(companyId){
+			var start =0;
+			var param = {
+					start:0,
+		            limit:1000,
+					companyId:companyId,
+					};
+
+            return $es.ajax("cartBean.getCartInfo",param);
+		};
+		
+		/**
+		 * 删除购物车产品
+		 * @param cartId
+		 * 
+		 */
+		this.deleteProduct=function(cartId){
+            return $es.ajax("cartBean.doDelete",{cartId:cartId});
+		};
+		
+		this.updateValue = function(companyId,cartId,productId,col,value){
+			var param = {
+					companyId:companyId,
+					proId:productId,
+					cartId:cartId,
+					col:col,
+					value:value
+			};
+            return $es.ajax("cartBean.doUpdate",param);
+		};
+
+		this.changePrice = function(companyId,cartId,productId,value){
+			return this.updateValue(companyId,cartId,productId,"price",value)
+		};
+
+		this.editProduct = function(companyId,cartId,productId,value){
+			return this.updateValue(companyId,cartId,productId,"count",value)
+		};
+		
+		/**
+		 * 提交订单接口
+		 */
+		this.submitCart = function(companyId,products,orderinfo){
+			var cartIdList = "";
+			var proIdList = "";
+			products.forEach(function(item){
+				cartIdList += ","+item.cartId;
+			});
+			cartIdList = cartIdList.slice(1);
+			//处理金额
+			orderinfo.totalAmount.toString().indexOf(',') != -1 ? orderinfo.totalAmount = orderinfo.totalAmount.replace(/,/g, '') : orderinfo.totalAmount
+			var param = {};
+			param.companyId = companyId;
+			param.cartIdList = cartIdList;
+			for(var key in orderinfo){
+				if(key === "deliveryType"){
+					param.shippingMethod = orderinfo.deliveryType.type || 0;
+					 if(orderinfo.deliveryType.type === 1 && orderinfo.address){
+						param.addressId = orderinfo.address.addrId;
+						param.addressDetail = orderinfo.address.address;
+						param.contactName = orderinfo.address.firstName;
+						param.contactMobile = orderinfo.address.mobile;
+					 }
+				}else if(key === "paymentMethod")
+					param.paymentMethod = orderinfo.paymentMethod.type || 0 ;
+				else if(key === "remark"){
+					param.remark = orderinfo.remark.replace(/\ud83d[\udc00-\ude4f\ude80-\udfff]/g,"");
+				}else
+					param[key] = orderinfo[key];
+			}
+			param.hrsv1 = '';
+			param.hrsv2 = '';
+			param.hrsv3 = '';
+			callbackHook.run('cart-submitCart',param);
+           return $es.ajax("orderBean.doCreate",param);
+		}
+		
+    }]);

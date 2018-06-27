@@ -1,0 +1,78 @@
+/**
+ * Created by chent on 2017/1/18
+ *
+ *  PaymentService
+ *  处理付款单的数据接口
+ *  doTransferPay: 付款单付款接口
+ *  getPaymentList : 获取付款单列表(分页)
+ *  getPaymentDetail : 获取付款单详情
+ *  doCancel: 付款单作废接口
+ *
+ */
+angular.module("myApp").service("PaymentService",["$es",function($es){
+	
+	
+	var app=$es.getConfig('custid');
+    /**
+     * 付款单查询列表
+     */
+    this.getPaymentList = function(filter,page,searchVal,company,customId){
+    	var limit=8,param=　{}; 
+   	 	param.page = (page+1);
+   	 	param.start = page*limit;
+   	 	param.limit = limit;
+   		param.queryType=1;
+   		param.searchVal = searchVal;	
+    	param.reciverId = customId;
+    	param.companyId = company;
+    	for(var key in filter){
+			param[key] = filter[key];
+		}
+	   	var result=$es.ajax('upPaymentBean.paymentDetailListQuery',param);
+	   	return result;
+    };
+
+    /**
+     * 付款单查询详情
+     */
+    this.getPaymentDetail = function(paymentId){
+    	var param=　{
+			"equalsPaymentNo" : paymentId,
+			"queryType":1
+   	    }; 
+    	var result= $es.ajax('upPaymentBean.paymentDetail',param);
+        return result;
+    }
+    
+    /**
+     * 付款单插入账号信息
+     */
+    this.insertRecAccNo = function(param){
+    	var result= $es.ajax('upPaymentBean.insertRecAccNoInfo',param);
+        return result;
+    }
+    /**
+     * 付款单付款按钮
+     */
+    this.doTransferPay = function(payment){
+    	
+    	var params = {},a ={};
+    	params.paymentNo = payment.paymentNo;
+    	a ={
+    		'0':params
+    	}
+    	var result= $es.ajax('upPaymentBean.doTransferPay',a);
+        return result;
+    } 
+    
+  
+    
+    /**
+     * 付款单作废付款按钮
+     */
+    
+    this.doCancel = function(param){
+    	var result= $es.ajax('upPaymentBean.invalidPayment',param);
+        return result;
+    }
+}]);
