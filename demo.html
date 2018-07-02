@@ -60,7 +60,8 @@
             var uploadForm = document.getElementById('js-upload-form');
 
             var startUpload = function(files) {
-                let fileUpload=files[0];                
+            	                console.log(files[0])  
+                let fileUpload=files[0];              
 			     s3.upload('https://www.test.com/api/upload',fileUpload,{},function(res){
 
 			       console.log(res)
