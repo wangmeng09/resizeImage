@@ -1,0 +1,37 @@
+.skin-back{
+	background: #ae2429!important;
+}
+.skin-border{
+	border-color: #ae2429
+}
+.skin-color{
+	color: #ae2429 !important
+}
+
+.skin-back-ligther{
+	background-color: #ffd8db!important;
+}
+
+.skin-border-ligther {
+	border-color: #ec0e20
+}
+
+.skin-color-ligther {
+	color: #ffd8db
+}
+
+.skin-back-dark {
+	background: #920d12;
+}
+
+.skin-back-deep {
+	background: #9a0210
+}
+.skin-wave:before,.skin-wave:after{
+	background: #ae2429!important;
+}
+
+.skin-select option:hover,.skin-select:focus option:checked {
+	background-color: #ffd8db;
+	color: #ae2429 !important;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>查询</title>
+    <link href="http://gyj.icbc.com.cn/resource/CDN/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://gyj.icbc.com.cn/resource/CDN/font/iconfont/iconfont.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/loanPlatform.css">
+    <link rel="stylesheet" href="css/red.css">
+</head>
+<body>
+<div class="loanPlatform_query_borrow">
+    <div class="fixed-top bg-gary">
+        <div class="date row mx-0 border-bottom">
+            <div class="col-2 px-0 border-right">
+                <select name="" id="" class="pl-2">
+                    <option value="">年</option>
+                    <option value="">月</option>
+                    <option value="">日</option>
+                </select>
+            </div>
+            <div class="col-9 px-0">
+                <input type="text" value="2018-07-09">~<input type="text" value="2018-07-09">
+            </div>
+            <div class="col-1 px-0">
+                <i class="iconfont icon-sou" style="font-size: 1.6rem;"></i>
+            </div>
+        </div>
+        <div class="p-3">
+            <ul class="nav nav-tabs row  bg-white mx-0 rounded border-bottom-0" id="myTab" role="tablist" style="overflow: hidden">
+                <li class="nav-item col-6 px-0 mb-0">
+                    <a class="nav-link rounded-0 skin-border skin-color  text-center active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">我的借款</a>
+                </li>
+                <li class="nav-item col-6 px-0 mb-0">
+                    <a class="nav-link  rounded-0 skin-border  skin-color text-center " id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">我的还款</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <ul class="list-group">
+                <li class="list-group-item border-0 mb-2 rounded py-0">
+                    <h6 class="pt-3 border-bottom mb-0 clearfix">
+                        <p class="float-left "><span class="skin-color borrowing_logo mr-1">借</span>CPL201806261020</p>
+                        <span class=" float-right font-weight-normal skin-color">已失败</span></h6>
+                    <div class="text-gary mt-3">
+                        <p class="row"><span class="col-6">借款发起日</span><span class="col-6 text-right">2018-07-04</span></p>
+                        <p class="row"><span class="col-6">剩余金额</span><span class="col-6 text-right skin-color">130.00元</span></p>
+                    </div>
+                </li>
+                <li class="list-group-item border-0 mb-2 rounded py-0">
+                    <h6 class="pt-3 border-bottom mb-0 clearfix">
+                        <p class="float-left "><span class="skin-color borrowing_logo mr-1">借</span>CPL201806261020</p>
+                        <span class=" float-right font-weight-normal ">已完成</span></h6>
+                    <div class="text-gary mt-3">
+                        <p class="row"><span class="col-6">借款发起日</span><span class="col-6 text-right">2018-07-04</span></p>
+                        <p class="row"><span class="col-6">剩余金额</span><span class="col-6 text-right skin-color">130.00元</span></p>
+                    </div>
+                </li>
+                <li class="list-group-item border-0 mb-2 rounded py-0">
+                    <h6 class="pt-3 border-bottom mb-0 clearfix">
+                        <p class="float-left "><span class="skin-color borrowing_logo mr-1">借</span>CPL201806261020</p>
+                        <span class=" float-right font-weight-normal text-orange">申请中</span></h6>
+                    <div class="text-gary mt-3">
+                        <p class="row"><span class="col-6">借款发起日</span><span class="col-6 text-right">2018-07-04</span></p>
+                        <p class="row"><span class="col-6">剩余金额</span><span class="col-6 text-right skin-color">130.00元</span></p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <ul class="list-group">
+                <li class="list-group-item border-0 mb-2 rounded py-0">
+                    <h6 class="pt-3 border-bottom mb-0 clearfix">
+                        <p class="float-left "><span class="skin-color borrowing_logo mr-1">还</span>CPL201806261020</p>
+                        <span class=" float-right font-weight-normal skin-color">已失败</span></h6>
+                    <div class="text-gary mt-3">
+                        <p class="row"><span class="col-6">还款金额</span><span class="col-6 text-right skin-color">107.88元</span></p>
+                        <p class="row"><span class="col-6">还款利息</span><span class="col-6 text-right">77.88元</span></p>
+                        <p class="row"><span class="col-6">还款本金</span><span class="col-6 text-right">100.00元</span></p>
+                        <p class="row"><span class="col-6">还款发起日</span><span class="col-6 text-right">2018-07-04</span></p>
+                    </div>
+                </li>
+                <li class="list-group-item border-0 mb-2 rounded py-0">
+                    <h6 class="pt-3 border-bottom mb-0 clearfix">
+                        <p class="float-left "><span class="skin-color borrowing_logo mr-1">还</span>CPL201806261020</p>
+                        <span class=" float-right font-weight-normal ">已完成</span></h6>
+                    <div class="text-gary mt-3">
+                        <p class="row"><span class="col-6">还款金额</span><span class="col-6 text-right skin-color">107.88元</span></p>
+                        <p class="row"><span class="col-6">还款利息</span><span class="col-6 text-right">77.88元</span></p>
+                        <p class="row"><span class="col-6">还款本金</span><span class="col-6 text-right">100.00元</span></p>
+                        <p class="row"><span class="col-6">还款发起日</span><span class="col-6 text-right">2018-07-04</span></p>
+                    </div>
+                </li>
+                <li class="list-group-item border-0 mb-2 rounded py-0">
+                    <h6 class="pt-3 border-bottom mb-0 clearfix">
+                        <p class="float-left "><span class="skin-color borrowing_logo mr-1">还</span>CPL201806261020</p>
+                        <span class=" float-right font-weight-normal text-orange">申请中</span></h6>
+                    <div class="text-gary mt-3">
+                        <p class="row"><span class="col-6">还款金额</span><span class="col-6 text-right skin-color">107.88元</span></p>
+                        <p class="row"><span class="col-6">还款利息</span><span class="col-6 text-right">77.88元</span></p>
+                        <p class="row"><span class="col-6">还款本金</span><span class="col-6 text-right">100.00元</span></p>
+                        <p class="row"><span class="col-6">还款发起日</span><span class="col-6 text-right">2018-07-04</span></p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+<script src="http://gyj.icbc.com.cn/resource/CDN/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://gyj.icbc.com.cn/resource/CDN/popper.js/1.12.9/popper.min.js"></script>
+<script src="http://gyj.icbc.com.cn/resource/CDN/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<!--弹框调用方式-->
+<script src="js/modal.js"></script>
+</body>
+</html>

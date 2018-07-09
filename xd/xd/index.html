@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>首页</title>
+    <link href="http://gyj.icbc.com.cn/resource/CDN/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://gyj.icbc.com.cn/resource/CDN/font/iconfont/iconfont.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/loanPlatform.css">
+    <link rel="stylesheet" href="css/red.css">
+</head>
+<body>
+<div class="loanPlatform_index bg-white">
+    <small class="text-gary d-block text-right pt-2 pr-3" id="changeCompany">切换分公司<i class="iconfont icon-arrow-right"></i></small>
+    <div class="moneyModule text-center">
+        <div class="middle-center">
+            <div>
+                <small class="text-gary">可用金额（元）</small>
+                <h1 class="skin-color mb-0">90000</h1>
+                <small class="text-gary">总额度&nbsp;100000&nbsp;元</small>
+            </div>
+        </div>
+        <div class="row mx-0 mt-3">
+            <div class="col-6"><h6 class="mb-2 d-block font-weight-bold">53719.23</h6><small class="mb-2 d-block text-gary">应还利息（元）</small></div>
+            <div class="col-6"><h6 class="mb-2 d-block font-weight-bold">53719.23</h6><small class="mb-2 d-block text-gary">应还本金（元）</small></div>
+        </div>
+    </div>
+    <div style="background-color: #f3f5f7;height:.5rem;"></div>
+    <div class="p-3 mt-3">
+        <button type="button" class="btn btn-danger skin-back skin-border btn-block mb-4">借款</button>
+        <button type="button" class="btn btn-outline-danger skin-color skin-border btn-block mb-4">还款</button>
+        <button type="button" class="btn btn-light btn-block mb-4">查询</button>
+    </div>
+    <footer class="position-fixed mb-3 text-center">
+        <small class="d-block"><a class="pr-3">借款须知</a>|<a class="pl-3">返回</a></small>
+        <small class="d-block">本服务由工银聚提供</small>
+    </footer>
+    <!-- Modal -->
+    <div class="modal fade" id="changeCompanyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog m-0 position-fixed" style="width: 100%;bottom:0;" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0 py-2">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Morbi leo risus</li>
+                        <li class="list-group-item">Porta ac consectetur ac</li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="http://gyj.icbc.com.cn/resource/CDN/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://gyj.icbc.com.cn/resource/CDN/popper.js/1.12.9/popper.min.js"></script>
+<script src="http://gyj.icbc.com.cn/resource/CDN/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<!--弹框调用方式-->
+<script src="js/modal.js"></script>
+</body>
+</html>
