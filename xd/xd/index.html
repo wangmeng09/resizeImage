@@ -6,8 +6,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>首页</title>
-    <link href="http://gyj.icbc.com.cn/resource/CDN/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://gyj.icbc.com.cn/resource/CDN/font/iconfont/iconfont.css" rel="stylesheet">
+    <link href="http://resource.gongyinju.com/resource/CDN/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://resource.gongyinju.com/resource/CDN/font/iconfont/iconfont.css" rel="stylesheet">
     <link rel="stylesheet" href="css/loanPlatform.css">
     <link rel="stylesheet" href="css/red.css">
 </head>
@@ -30,38 +30,52 @@
     <div style="background-color: #f3f5f7;height:.5rem;"></div>
     <div class="p-3 mt-3">
         <button type="button" class="btn btn-danger skin-back skin-border btn-block mb-4">借款</button>
-        <button type="button" class="btn btn-outline-danger skin-color skin-border btn-block mb-4">还款</button>
+        <button type="button" class="btn bg-white skin-color skin-border btn-block mb-4">还款</button>
         <button type="button" class="btn btn-light btn-block mb-4">查询</button>
     </div>
     <footer class="position-fixed mb-3 text-center">
-        <small class="d-block"><a class="pr-3">借款须知</a>|<a class="pl-3">返回</a></small>
-        <small class="d-block">本服务由工银聚提供</small>
+        <small class="d-block mb-2"><a class="pr-3">借款须知</a>|<a class="pl-3">返回</a></small>
+        <small class="d-block text-gary">本服务由工银聚提供</small>
     </footer>
-    <!-- Modal -->
+    <!-- 切换分公司 -->
     <div class="modal fade" id="changeCompanyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog m-0 position-fixed" style="width: 100%;bottom:0;" role="document">
             <div class="modal-content">
-                <div class="modal-header border-0 py-2">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="modal-header border-bottom-0 px-2 py-0">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
                 </div>
-                <div class="modal-body">
-                    <ul class="list-group">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
+                <div class="modal-body mt-0 pt-0">
+                   <!--数据列表1-->
+                  <ul class="list-group company1">
+                     <li class="list-group-item">
+                      <div class="form-check check-custom ">
+                        <input type="radio" name="example" id="exampleR1" value="option1" checked="">
+                        <label for="exampleR1">ABC工银联集团有限公司</label>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="form-check check-custom">
+                        <input type="radio" name="example" id="exampleR2" value="option1">
+                        <label for="exampleR2">浙江***有限公司</label>
+                      </div>
+                      </li>
+                    <li class="list-group-item">
+                      <div class="form-check check-custom">
+                        <input type="radio" name="example" id="exampleR3" value="option1">
+                        <label for="exampleR3">浙江***有限公司111</label>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="http://gyj.icbc.com.cn/resource/CDN/jquery/3.2.1/jquery.min.js"></script>
-<script src="http://gyj.icbc.com.cn/resource/CDN/popper.js/1.12.9/popper.min.js"></script>
-<script src="http://gyj.icbc.com.cn/resource/CDN/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="http://resource.gongyinju.com/resource/CDN/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://resource.gongyinju.com/resource/CDN/popper.js/1.12.9/popper.min.js"></script>
+<script src="http://resource.gongyinju.com/resource/CDN/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <!--弹框调用方式-->
 <script src="js/modal.js"></script>
 </body>
